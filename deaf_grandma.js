@@ -1,10 +1,10 @@
 function deafGrandma() {
 
     const isUpperCase = function(reply) {
-        reply.forEach(elem => {
-            if (elem === elem.toLowerCase()) return false;
-        })
-        return true;
+        for (let i = 0; i < reply.length; i++) {
+            if (reply[i] === reply[i].toLowerCase()) return false;
+            if (i === reply.length-1) return true;
+        }
     }
 
     const randomYear = function() {
@@ -13,14 +13,15 @@ function deafGrandma() {
     }
 
     let message = "HEY, KID!";
-    let repeat = true;
+    let reply;
+    let goodbye = 0;
 
-    while (repeat === true) {
-        let reply = prompt(message);
+    const grandmaSpeak = function(message) {
+        reply = prompt(message);
 
         if (reply === "GOODBYE!" && goodbye === 1) {
-            message = "LATER, SKATER!";
-            repeat = false;
+            window.prompt("LATER, SKATER!");
+            return;
         } else if (reply === "GOODBYE!") {
             message = "LEAVING SO SOON?";
             goodbye++;
@@ -31,7 +32,10 @@ function deafGrandma() {
         } else {
             message = "WHAT?!"
         }
+        grandmaSpeak(message);
     }
+
+    grandmaSpeak(message);
 
 }
 
